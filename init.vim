@@ -16,9 +16,12 @@ set expandtab               " converts tabs to white space
 set number                  " add line numbers
 set noswapfile              " disable creating swap file
 set linebreak
+set list
 set wrap
 set ai
-  
+
+if !has('nvim') | set viminfo+=n~/.config/vim/viminfo | endif
+
 set cursorline
 highlight Cursorline cterm=bold
 
