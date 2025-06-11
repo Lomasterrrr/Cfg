@@ -110,7 +110,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-	font pango:FreeMono bold 10
+	font pango:FreeMono bold 9
         status_command i3blocks
 	position top
 }

@@ -8,7 +8,14 @@
 static char *font = "FreeMono:size=10:antialias=true:autohint=true";
 static char *font2[] = { "FreeMono:size=10:antialias=true:autohint=true" };
 
+
+
+/*
 static int borderpx = 10;
+*/
+static int borderpx = 0;
+
+
 
 /*
  * What program is execed by st depends of these precedence rules:

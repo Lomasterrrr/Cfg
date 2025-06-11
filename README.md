@@ -1,4 +1,5 @@
 ```
 git clone https://github.com/Lomasterrrr/Cfg.git
-./install.sh
+sudo -E ./install.sh
 ```
+PS: use sudo!! and flag '-E'

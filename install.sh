@@ -112,6 +112,23 @@ cd ../../
 echo "AE	copy './apps/sout' in '~/sout'"
 cp -fr ./apps/sout/* ~/sout/
 
+# tcsh
+rm -rf ~/tcsh
+mkdir ~/tcsh >/dev/null 2>&1
+echo "AE	create dir ~/tcsh!"
+echo "AE	COMPILE TCSH......"
+cd ./apps/tcsh
+make clean >/dev/null 2>&1
+./configure
+make install -j
+cd ../../
+cp -fr ./apps/tcsh/* ~/tcsh/
+echo "AE	copy './apps/tcsh' in '~/tcsh'"
+cp -f ./configs/tcsh ~/.tcshrc
+echo "AE	copy './configs/tcsh' in '~/.tcshrc'"
+chsh -s /bin/tcsh
+echo "AE	set tcsh for main shell (chsh -s)"
+
 echo ""
 echo "			FINISH"
 echo "		PLEASE RESTART I3!"
@@ -120,8 +137,10 @@ echo "CONFIG I3		~/.config/i3/config"
 echo "CONFIG I3BLOCKS		~/.config/i3blocks/config"
 echo "CONFIG I3STATUS		~/.i3status.conf"
 echo "CONFIG VIM		~/.vimrc"
+echo "CONFIG TCSH		~/.tcshrc"
 echo "APP SOUT		~/sout"
 echo "APP ST			~/st"
+echo "APP TCSH			~/tcsh"
 echo ""
 echo "super + enter		st (terminal)"
 echo "super + d		sout (apps)"
