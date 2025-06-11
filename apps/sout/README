@@ -1,0 +1,37 @@
+Console application manager for linux like dmenu; supports search and
+3 output modes, very fast. For compilation you just need to run Makefile
+in the root folder, i.e. in the folder with sout.c.
+
+! The ncurses library is required for compilation.
+
+1. (l) Line mode for one line search:
+
+  : firef
+
+2. (ll) Long mode for searching in multiple lines:
+
+  loaded 11608 files from 6 paths (2.95 GiB)
+  exec /usr/sbin/firefox (45.00 B) 4
+  : firef
+  ------------------------------------
+  zipinfo
+  zmf2raw
+  zmf2svg
+  ...,
+
+3. (s) Short mode is the same as long mode, only without the prompts:
+
+  loaded 11608 files from 6 paths (2.95 GiB)
+  exec /usr/sbin/firefox (45.00 B) 4
+  : firef
+
+4. (r) Random mode to select a random mode from the {line, long} set:
+
+  ????
+  ????
+
+To set it in i3 you can make a bind like this,
+  bindsym $<key> exec --no-startup-id <your terminal> <path to sout> <mode>.
+
+For example, I have it set like this,
+  bindsym $mod+d exec --no-startup-id kitty /home/lomaster/sout/sout -m ll -p "/bin,/sbin"
