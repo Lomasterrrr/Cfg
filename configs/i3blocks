@@ -2,6 +2,7 @@
 command=~/.config/i3blocks/network.sh
 interval=5
 color=#00ff00
+markup=pango
 
 [memory]
 command=~/.config/i3blocks/memory.sh

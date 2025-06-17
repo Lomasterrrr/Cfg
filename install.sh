@@ -41,7 +41,7 @@ check_dirs() {
 		fi
 	done
 }
-check_commands i3 i3bar i3blocks scrot xclip gcc make vim ldconfig setxkbmap xmodmap xrandr ip
+check_commands i3 i3bar i3blocks scrot xclip gcc make vim ldconfig setxkbmap xmodmap xrandr ip pango-view
 check_files ./configs/i3 ./configs/i3blocks ./configs/i3status
 check_files ./configs/vim ./scripts/cpu.sh ./scripts/network.sh ./scripts/memory.sh ./scripts/lay.sh ./scripts/mon.sh ./scripts/sc.sh
 check_dirs ./apps ./apps/sout ./apps/st

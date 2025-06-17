@@ -269,7 +269,7 @@ configure:7053: found /usr/sbin/gencat
 configure:7065: result: /usr/sbin/gencat
 configure:7093: checking for library containing crypt
 configure:7123: gcc -o conftest -g -O2   conftest.c  >&5
-/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/cc7P1Ow0.o: in function `main':
+/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/cc2K8LK6.o: in function `main':
 /home/lomaster/other/Cfg/apps/tcsh/conftest.c:19:(.text.startup+0xb): undefined reference to `crypt'
 collect2: error: ld returned 1 exit status
 configure:7123: $? = 1
@@ -305,7 +305,7 @@ configure:7182: $? = 0
 configure:7202: result: none required
 configure:7211: checking for library containing tgetent
 configure:7241: gcc -o conftest -g -O2   conftest.c -lcrypt  >&5
-/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/ccCEElas.o: in function `main':
+/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/ccy82z7L.o: in function `main':
 /home/lomaster/other/Cfg/apps/tcsh/conftest.c:19:(.text.startup+0xb): undefined reference to `tgetent'
 collect2: error: ld returned 1 exit status
 configure:7241: $? = 1
@@ -1411,7 +1411,7 @@ configure:8435: $? = 0
 configure:8435: result: yes
 configure:8441: checking for getauthid
 configure:8441: gcc -o conftest -g -O2   conftest.c -ltinfo -lcrypt  >&5
-/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/ccJbTITe.o: in function `main':
+/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/ccOZ8sNx.o: in function `main':
 /home/lomaster/other/Cfg/apps/tcsh/conftest.c:75:(.text.startup+0xb): undefined reference to `getauthid'
 collect2: error: ld returned 1 exit status
 configure:8441: $? = 1
@@ -1557,7 +1557,7 @@ configure:8513: $? = 0
 configure:8513: result: yes
 configure:8519: checking for setproctitle
 configure:8519: gcc -o conftest -g -O2   conftest.c -ltinfo -lcrypt  >&5
-/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/ccsec9qS.o: in function `main':
+/usr/lib/gcc/x86_64-pc-linux-gnu/14/../../../../x86_64-pc-linux-gnu/bin/ld: /tmp/cccB6W6k.o: in function `main':
 /home/lomaster/other/Cfg/apps/tcsh/conftest.c:87:(.text.startup+0xb): undefined reference to `setproctitle'
 collect2: error: ld returned 1 exit status
 configure:8519: $? = 1
