@@ -4,7 +4,7 @@ set savehist=1
 set histfile = ~/.history
 setenv PATH "$PATH"
 #set prompt="# "
-set prompt="%{\033[1;31m%}%n%{\033[1;37m%} # %{\033[0m%}"
+set prompt="%{\033[1;4;36m%}%n%{\033[0m%}%{\033[1;37m%} %{\033[0m%}"
 alias ls 'ls --color'
 set expand
 set tabstop=8
