@@ -1,5 +1,5 @@
 [aee]
-command=~/.config/i3blocks/ae.sh
+command=~/.config/i3blocks/rbg
 interval=1
 markup=pango
 
