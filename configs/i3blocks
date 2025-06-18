@@ -1,3 +1,8 @@
+[aee]
+command=~/.config/i3blocks/ae.sh
+interval=1
+markup=pango
+
 [network]
 command=~/.config/i3blocks/network.sh
 interval=5

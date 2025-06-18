@@ -43,7 +43,7 @@ check_dirs() {
 }
 check_commands i3 i3bar i3blocks scrot xclip gcc make vim ldconfig setxkbmap xmodmap xrandr ip pango-view
 check_files ./configs/i3 ./configs/i3blocks ./configs/i3status
-check_files ./configs/vim ./scripts/cpu.sh ./scripts/network.sh ./scripts/memory.sh ./scripts/lay.sh ./scripts/mon.sh ./scripts/sc.sh
+check_files ./configs/vim ./scripts/cpu.sh ./scripts/network.sh ./scripts/memory.sh ./scripts/lay.sh ./scripts/mon.sh ./scripts/sc.sh ./scripts/ae.sh
 check_dirs ./apps ./apps/sout ./apps/st
 if ldconfig -p 2>/dev/null | grep -q "libncurses.so"; then
 	echo "AE	ncurses found!"
@@ -79,6 +79,8 @@ cp -f ./scripts/memory.sh ~/.config/i3blocks/memory.sh
 echo "AE	copy './scripts/memory.sh' in '~/.config/i3blocks/memory.sh'"
 cp -f ./scripts/network.sh ~/.config/i3blocks/network.sh
 echo "AE	copy './scripts/network.sh' in '~/.config/i3blocks/network.sh'"
+cp -f ./scripts/ae.sh ~/.config/i3blocks/ae.sh
+echo "AE	copy './scripts/ae.sh' in '~/.config/i3blocks/ae.sh'"
 
 # i3status (even though I don't need to)
 cp -f ./configs/i3status ~/.i3status.conf
@@ -140,7 +142,7 @@ echo "CONFIG VIM		~/.vimrc"
 echo "CONFIG TCSH		~/.tcshrc"
 echo "APP SOUT		~/sout"
 echo "APP ST			~/st"
-echo "APP TCSH			~/tcsh"
+echo "APP TCSH		~/tcsh"
 echo ""
 echo "super + enter		st (terminal)"
 echo "super + d		sout (apps)"
