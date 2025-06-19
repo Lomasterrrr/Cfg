@@ -34,19 +34,29 @@ static inline void msg_build(msg_t *m)
 	srand((({struct timespec ts;clock_gettime(CLOCK_MONOTONIC,&ts),
 		(u_long)(ts.tv_sec*1000000000L+ts.tv_nsec);})));
 
-	m->msg=msgs[rand()%(sizeof(msgs)/sizeof(const char*))];
-	m->color=colors[rand()%(sizeof(colors)/sizeof(const char*))];
+	if (!(rand()%1000==0)) {
+		m->msg=msgs[rand()%(sizeof(msgs)/sizeof(const char*))];
+		m->color=colors[rand()%(sizeof(colors)/sizeof(const char*))];
 
-	m->weight=rand()%4;	/*	bold/light/ultrabold	*/
-	m->underline=rand()%3;	/*	single/error (no double/low)	*/
+		m->weight=rand()%4;	/*	bold/light/ultrabold	*/
+		m->underline=rand()%3;	/*	single/error (no double/low)	*/
 
-	if (rand()%100<35)			/* 35% */
-		m->underline=1+rand()%2;	/* or 1, or 2 */
-	else
-		m->underline=0;
+		if (rand()%100<35)			/* 35% */
+			m->underline=1+rand()%2;	/* or 1, or 2 */
+		else
+			m->underline=0;
 
-	m->style=rand()%4;	/*	normal/italic/oblique	*/
-	m->strikethrough=(rand()%10<2)?1:0;	/* 20% */
+		m->style=rand()%4;	/*	normal/italic/oblique	*/
+		m->strikethrough=(rand()%10<2)?1:0;	/* 20% */
+	}
+	else {	/* igra in 32 takta */
+		m->msg="----> 0.1%% IGRA IN 32 TAKTA (PIZDEC)";
+		m->color="Gold";
+		m->weight=3;
+		m->underline=1;
+		m->style=2;
+		m->strikethrough=0;
+	}
 }
 
 static inline void msg_to_pango(msg_t *m, char *dst, size_t dstlen)
