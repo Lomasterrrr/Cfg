@@ -8,18 +8,64 @@
 #include <assert.h>
 
 typedef struct __msg_t {
+	const char	*msg,*color;
+#define WEIGHT_BOLD		1
+#define WEIGHT_LIGHT		2
+#define WEIGHT_ULTRABOLD	3
+#define UNDERLINE_SINGLE	1
+#define UNDERLINE_ERROR		2
+#define STYLE_ITALIC		2
+#define STYLE_OBLIQUE		3
 	u_char		weight,underline,
 			style,strikethrough;
-	const char	*msg,*color;
 } msg_t;
 
-static inline void msg_build(msg_t *m)
+inline static void msg_random_build(msg_t *m);
+inline static int msg_build(msg_t *m, const char *msg, const char *color,
+	u_char weight, u_char underline, u_char style,u_char strikethrough);
+inline static void msg_to_pango(msg_t *m, char *dst, size_t dstlen);
+
+inline static int msg_build(msg_t *m, const char *msg, const char *color,
+	u_char weight, u_char underline, u_char style,u_char strikethrough)
+{
+	assert(m);
+	assert(msg);
+
+	memset(m,0,sizeof(*m));
+	switch (weight) {
+		case WEIGHT_BOLD: case WEIGHT_LIGHT:
+		case WEIGHT_ULTRABOLD: case 0:
+			break;
+		default:
+			return -1;
+	}
+	switch (underline) {
+		case UNDERLINE_SINGLE:
+		case UNDERLINE_ERROR:
+		case 0:
+			break;
+		default:
+			return -1;
+	}
+	switch (style) {
+		case STYLE_OBLIQUE: case STYLE_ITALIC:
+		case 0:
+			break;
+		default:
+			return -1;
+	}
+	if (strikethrough!=1&&strikethrough!=0)
+		return -1;
+	
+}
+
+inline static void msg_random_build(msg_t *m)
 {
 	const char *msgs[]={
-		"AEEEEEEEE AEE","Hong Kong","ktotonokto",
-		"IGRA IN 16 TAKTOV","Bez prava na oshibku",
-		"aeeee","Isskustvo levitacii","True",
-		"ISTINA","Verum","Shanghai"
+		"\"AEEEEEEEE AEE\"","\"Hong Kong\"","\"ktotonokto\"",
+		"\"IGRA IN 16 TAKTOV\"","\"Bez prava na oshibku\"",
+		"\"aeeee\"","\"Isskustvo levitacii\"","\"True\"",
+		"\"ISTINA\"","\"Verum\"","\"Shanghai\""
 	};
 	const char *colors[]={
 		"blue","Yellow","fuchsia","red","cyan",
@@ -59,7 +105,7 @@ static inline void msg_build(msg_t *m)
 	}
 }
 
-static inline void msg_to_pango(msg_t *m, char *dst, size_t dstlen)
+inline static void msg_to_pango(msg_t *m, char *dst, size_t dstlen)
 {
 	char tempres[USHRT_MAX];
 
@@ -70,43 +116,45 @@ static inline void msg_to_pango(msg_t *m, char *dst, size_t dstlen)
 	memset(tempres,0,sizeof(tempres));
 	strcpy(tempres,"<span");
 	switch (m->weight) {
-		case 1:
+		case WEIGHT_BOLD:
 			strcpy(tempres+strlen(tempres),
 				" font_weight=\"bold\"");
 			break;
-		case 2:
+		case WEIGHT_LIGHT:
 			strcpy(tempres+strlen(tempres),
 				" font_weight=\"light\"");
 			break;
-		case 3:
+		case WEIGHT_ULTRABOLD:
 			strcpy(tempres+strlen(tempres),
 				" font_weight=\"ultrabold\"");
 			break;
-		default:
+		case 0:
 			break;
 	}
 	switch (m->underline) {
-		case 1:
+		case UNDERLINE_SINGLE:
 			strcpy(tempres+strlen(tempres),
 				" underline=\"single\"");
 			break;
-		case 2:
+		case UNDERLINE_ERROR:
 			strcpy(tempres+strlen(tempres),
 				" underline=\"error\"");
 			break;
-		default:
+		case 0:
+			strcpy(tempres+strlen(tempres),
+				" underline=\"none\"");
 			break;
 	}
 	switch (m->style) {
-		case 2:
+		case STYLE_ITALIC:
 			strcpy(tempres+strlen(tempres),
 				" font_style=\"italic\"");
 			break;
-		case 3:
+		case STYLE_OBLIQUE:
 			strcpy(tempres+strlen(tempres),
 				" font_style=\"oblique\"");
 			break;
-		case 1: default:
+		case 0:
 			strcpy(tempres+strlen(tempres),
 				" font_style=\"normal\"");
 			break;
@@ -118,9 +166,7 @@ static inline void msg_to_pango(msg_t *m, char *dst, size_t dstlen)
 	strcpy(tempres+strlen(tempres)," foreground=\"");
 	strcpy(tempres+strlen(tempres),m->color);
 	strcpy(tempres+strlen(tempres),"\">");
-	strcpy(tempres+strlen(tempres),"\"");
 	strcpy(tempres+strlen(tempres),m->msg);
-	strcpy(tempres+strlen(tempres),"\"");
 	strcpy(tempres+strlen(tempres),"</span>");
 
 	if (dstlen<strlen(tempres)+1)
@@ -135,7 +181,7 @@ int main(int argc, char **argv)
 	char	res[USHRT_MAX];
 	msg_t	msg;
 
-	msg_build(&msg);
+	msg_random_build(&msg);
 	msg_to_pango(&msg,res,sizeof(res));
 
 	printf("%s ::\n",res);
