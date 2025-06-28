@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <sys/types.h>
+#include <sys/random.h>
 #include <sys/time.h>
 #include <time.h>
 #include <assert.h>
@@ -19,6 +20,21 @@ typedef struct __msg_t {
 	u_char		weight,underline,
 			style,strikethrough;
 } msg_t;
+
+u_int urand(u_int min, u_int max)
+{
+	u_int random, range;
+	ssize_t ret;
+
+	if (min>max)
+		return 1;
+	range=(max>=min)?(max-min+1):
+		(UINT_MAX-min+1);
+
+	return ((ret=getrandom(&random, sizeof(u_int),GRND_NONBLOCK
+		|GRND_RANDOM))==-1||(ret!=sizeof(u_int))?0:
+		((min+(random%range))));
+}
 
 inline static void msg_random_build(msg_t *m);
 inline static int msg_build(msg_t *m, const char *msg, const char *color,
@@ -76,24 +92,20 @@ inline static void msg_random_build(msg_t *m)
 	assert(m);
 	memset(m,0,sizeof(*m));
 
-	/*	set seed for rand	*/
-	srand((({struct timespec ts;clock_gettime(CLOCK_MONOTONIC,&ts),
-		(u_long)(ts.tv_sec*1000000000L+ts.tv_nsec);})));
+	if (!((urand(0,1000))==0)) {
+		m->msg=msgs[urand(0,(sizeof(msgs)/sizeof(const char*))-1)];
+		m->color=colors[urand(0,(sizeof(colors)/sizeof(const char*))-1)];
 
-	if (!(rand()%1000==0)) {
-		m->msg=msgs[rand()%(sizeof(msgs)/sizeof(const char*))];
-		m->color=colors[rand()%(sizeof(colors)/sizeof(const char*))];
+		m->weight=urand(0,4);	/*	bold/light/ultrabold	*/
 
-		m->weight=rand()%4;	/*	bold/light/ultrabold	*/
-		m->underline=rand()%3;	/*	single/error (no double/low)	*/
-
-		if (rand()%100<35)			/* 35% */
-			m->underline=1+rand()%2;	/* or 1, or 2 */
+		/*	single/error (no double/low)	*/
+		if (urand(0,100)<35)			/* 35% */
+			m->underline=urand(1,2);	/* or 1, or 2 */
 		else
 			m->underline=0;
 
-		m->style=rand()%4;	/*	normal/italic/oblique	*/
-		m->strikethrough=(rand()%10<2)?1:0;	/* 20% */
+		m->style=urand(0,4);	/*	normal/italic/oblique	*/
+		m->strikethrough=(urand(0,10)<2)?1:0;	/* 20% */
 	}
 	else {	/* igra in 32 takta */
 		m->msg="----> 0.1%% IGRA IN 32 TAKTA (PIZDEC)";
