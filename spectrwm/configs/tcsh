@@ -1,0 +1,19 @@
+setenv SHELL "`which tcsh`"
+set history=500
+set savehist=1
+set histfile = ~/.history
+setenv PATH "$PATH"
+#set prompt="# "
+set prompt="%{\033[1;4;36m%}%n%{\033[0m%}%{\033[1;37m%} %{\033[0m%}"
+alias ls 'ls --color'
+set expand
+set tabstop=8
+alias l "ls -lAh"
+alias cl 'clear'
+setenv EDITOR nvim
+setenv LANG en_US.UTF-8
+setenv LC_CTYPE en_US.UTF-8
+setenv PATH "$HOME/.ghcup/bin:$PATH"
+setenv XDG_DATA_HOME "$HOME/.local/share"
+setenv XDG_CONFIG_HOME "$HOME/.config"
+setenv XDG_CACHE_HOME "$HOME/.cache"
