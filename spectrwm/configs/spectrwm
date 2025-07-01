@@ -99,11 +99,6 @@ bar_font_color_selected=black
 bar_workspace_limit=0
 bar_font_pua=Typicons:pixelsize=14:antialias=true
 
-
-
-
-
-
 #focus_mode		= default
 #focus_close		= previous
 #focus_close_wrap	= 1
