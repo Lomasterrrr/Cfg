@@ -18,11 +18,13 @@ program[term]=~/st/st
 program[menu]=sh -c '~/st/st -e ~/sout/sout -m ll -p "/bin"'
 program[screenshot]=~/scripts/sc.sh
 program[telegram]=~/Telegram/Telegram
+program[other]=sh -c '~/st/st -e ~/other/a.out'
 
 bind[term]=MOD+Return
 bind[menu]=MOD+d
 bind[screenshot]=MOD+z
 bind[telegram]=MOD+m
+bind[other]=MOD+o
 
 workspace_limit=10
 bind[ws_1]=MOD+1
