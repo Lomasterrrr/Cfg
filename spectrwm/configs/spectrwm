@@ -10,7 +10,6 @@
 # NOTE: rgb color values are in hexadecimal! See XQueryColor(3) for details.
 
 modkey=Mod4
-color_focus=red
 
 autorun=ws[-1]:~/scripts/mon.sh
 autorun=ws[-1]:~/scripts/lay.sh
@@ -67,14 +66,14 @@ color_focus=red
 color_focus_maximized=red
 color_unfocus=gray
 color_unfocus_maximized=black
-color_urgent=rgb:ff/a5/00
-color_urgent_maximized=rgb:ff/a5/00
-color_focus_free=cyan
-color_focus_maximized_free=magenta
-color_unfocus_free=rgb:00/88/88
-color_unfocus_maximized_free=rgb:88/00/88
-color_urgent_free=rgb:b8/86/0b
-color_urgent_maximized_free=rgb:b8/86/0b
+color_urgent=red
+color_urgent_maximized=red
+color_focus_free=red
+color_focus_maximized_free=red
+color_unfocus_free=gray
+color_unfocus_maximized_free=gray
+color_urgent_free=red
+color_urgent_maximized_free=red
 region_padding=1
 tile_gap=0
 
